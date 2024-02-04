@@ -9,11 +9,11 @@ import com.api.spotychafa.models.SongModel;
 
 @Repository
 public interface IUSongRepository extends JpaRepository<SongModel, Long> {
-  
 
   public static SongModel jsonLikeToSongModel(String sontJson) {
     HashMap<String, String> resultMap = parseJsonString(sontJson);
     SongModel song = new SongModel();
+    song.setId(Long.parseLong(resultMap.get("id")));
     song.setTitle(resultMap.get("title"));
     song.setArtist(resultMap.get("artist"));
     song.setUrl(resultMap.get("url"));

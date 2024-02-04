@@ -33,7 +33,6 @@ public class SongController {
 
   @PostMapping()
   public ResponseEntity<String> saveSong(@RequestParam("song") String songJson, @RequestParam("file") MultipartFile file ) {
-    System.out.println("Aqui");
     return new ResponseEntity<>(this.songService.saveSong(songJson, file), HttpStatus.OK);
   }
 
@@ -48,4 +47,15 @@ public class SongController {
     return "ERROR: Song with Id" + id + " wasnt deleted!!!!!!";
   }
 
+  @DeleteMapping()
+  public String deleteAllSongs(){
+    boolean ok = this.songService.deleteAllSongs();
+
+    if(ok) {
+      return "All songs has been deleted";
+    }
+
+    return "ERROR D:";
+  }
+  
 }
